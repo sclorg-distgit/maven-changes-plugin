@@ -1,0 +1,37 @@
+From 540698d645c4e2646c9f6b2317dc3cf71005a892 Mon Sep 17 00:00:00 2001
+From: Michal Srb <msrb@redhat.com>
+Date: Wed, 10 Apr 2013 09:00:22 +0200
+Subject: [PATCH] Remove dependency on velocity-tools
+
+---
+ .../java/org/apache/maven/plugin/announcement/AnnouncementMojo.java  | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/src/main/java/org/apache/maven/plugin/announcement/AnnouncementMojo.java b/src/main/java/org/apache/maven/plugin/announcement/AnnouncementMojo.java
+index 06d4575..33af611 100644
+--- a/src/main/java/org/apache/maven/plugin/announcement/AnnouncementMojo.java
++++ b/src/main/java/org/apache/maven/plugin/announcement/AnnouncementMojo.java
+@@ -50,9 +50,9 @@ import org.apache.maven.settings.Settings;
+ import org.apache.velocity.Template;
+ import org.apache.velocity.app.VelocityEngine;
+ import org.apache.velocity.context.Context;
++import org.apache.velocity.VelocityContext;
+ import org.apache.velocity.exception.ResourceNotFoundException;
+ import org.apache.velocity.exception.VelocityException;
+-import org.apache.velocity.tools.ToolManager;
+ import org.codehaus.plexus.util.ReaderFactory;
+ import org.codehaus.plexus.util.StringUtils;
+ import org.codehaus.plexus.velocity.VelocityComponent;
+@@ -518,8 +518,7 @@ public class AnnouncementMojo
+     {
+         try
+         {
+-            ToolManager toolManager = new ToolManager( true );
+-            Context context = toolManager.createContext();
++            Context context = new VelocityContext();
+ 
+             if ( getIntroduction() == null || getIntroduction().equals( "" ) )
+             {
+-- 
+1.8.1.4
+
