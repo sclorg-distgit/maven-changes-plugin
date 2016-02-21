@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.8
-Release:        7.12%{?dist}
+Release:        7.13%{?dist}
 Summary:        Plugin to support reporting of changes between releases
 
 License:        ASL 2.0
@@ -20,32 +20,32 @@ BuildRequires: %{?scl_prefix_java_common}apache-commons-io
 BuildRequires: %{?scl_prefix_java_common}apache-commons-lang
 BuildRequires: %{?scl_prefix_java_common}apache-commons-logging
 BuildRequires: %{?scl_prefix_java_common}maven-local
-BuildRequires: maven30-maven-project
-BuildRequires: maven30-maven-doxia-sitetools
-BuildRequires: maven30-maven-install-plugin
-BuildRequires: maven30-maven-compiler-plugin
-BuildRequires: maven30-maven-plugin-plugin
-BuildRequires: maven30-maven-resources-plugin
-BuildRequires: maven30-maven-surefire-plugin
-BuildRequires: maven30-maven-surefire-provider-junit
-BuildRequires: maven30-maven-jar-plugin
-BuildRequires: maven30-maven-javadoc-plugin
-BuildRequires: maven30-maven-filtering
-BuildRequires: maven30-maven-reporting-api
-BuildRequires: maven30-maven-reporting-impl
-BuildRequires: maven30-modello
-BuildRequires: maven30-plexus-containers-container-default
-BuildRequires: maven30-plexus-containers-component-metadata
-BuildRequires: maven30-plexus-mail-sender
-BuildRequires: maven30-plexus-i18n
-BuildRequires: maven30-plexus-interpolation
-BuildRequires: maven30-plexus-utils
-BuildRequires: maven30-plexus-velocity
+BuildRequires: %{?scl_prefix}maven-project
+BuildRequires: %{?scl_prefix}maven-doxia-sitetools
+BuildRequires: %{?scl_prefix}maven-install-plugin
+BuildRequires: %{?scl_prefix}maven-compiler-plugin
+BuildRequires: %{?scl_prefix}maven-plugin-plugin
+BuildRequires: %{?scl_prefix}maven-resources-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-provider-junit
+BuildRequires: %{?scl_prefix}maven-jar-plugin
+BuildRequires: %{?scl_prefix}maven-javadoc-plugin
+BuildRequires: %{?scl_prefix}maven-filtering
+BuildRequires: %{?scl_prefix}maven-reporting-api
+BuildRequires: %{?scl_prefix}maven-reporting-impl
+BuildRequires: %{?scl_prefix}modello
+BuildRequires: %{?scl_prefix}plexus-containers-container-default
+BuildRequires: %{?scl_prefix}plexus-containers-component-metadata
+BuildRequires: %{?scl_prefix}plexus-mail-sender
+BuildRequires: %{?scl_prefix}plexus-i18n
+BuildRequires: %{?scl_prefix}plexus-interpolation
+BuildRequires: %{?scl_prefix}plexus-utils
+BuildRequires: %{?scl_prefix}plexus-velocity
 BuildRequires: %{?scl_prefix_java_common}xmlrpc-client
 BuildRequires: %{?scl_prefix_java_common}xmlrpc-common
 BuildRequires: %{?scl_prefix_java_common}xerces-j2
 BuildRequires: %{?scl_prefix_java_common}xml-commons-apis
-BuildRequires: maven30-velocity
+BuildRequires: %{?scl_prefix}velocity
 
 
 %description
@@ -66,7 +66,7 @@ API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # remove dependency on velocity-tools
@@ -88,13 +88,13 @@ rm -rf src/main/java/org/apache/maven/plugin/github
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -109,6 +109,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.8-7.13
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 2.8-7.12
 - maven33 rebuild
 
