@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.8
-Release:        7.13%{?dist}
+Release:        7.14%{?dist}
 Summary:        Plugin to support reporting of changes between releases
 
 License:        ASL 2.0
@@ -19,7 +19,7 @@ BuildRequires: %{?scl_prefix_java_common}jakarta-commons-httpclient
 BuildRequires: %{?scl_prefix_java_common}apache-commons-io
 BuildRequires: %{?scl_prefix_java_common}apache-commons-lang
 BuildRequires: %{?scl_prefix_java_common}apache-commons-logging
-BuildRequires: %{?scl_prefix_java_common}maven-local
+BuildRequires: %{?scl_prefix}maven-local
 BuildRequires: %{?scl_prefix}maven-project
 BuildRequires: %{?scl_prefix}maven-doxia-sitetools
 BuildRequires: %{?scl_prefix}maven-install-plugin
@@ -109,6 +109,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 2.8-7.14
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.8-7.13
 - maven33 rebuild #2
 
